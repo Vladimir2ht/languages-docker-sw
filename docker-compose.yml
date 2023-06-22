@@ -5,12 +5,8 @@ services:
     container_name: SW
     build:
       context: .
-      # dockerfile: Dockerfile
-    # volumes:
-    #   - .:/app
-    #   - /app/node_modules
     ports:
       - "3000:3000"
       - "9229:9229"
-    command: npm run start
+    command: npm run prod
     restart: always

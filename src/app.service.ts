@@ -1,13 +1,12 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
+import { IPeople, IPlanet, IShip, IUnnownEntity } from "./types";
 
 @Injectable()
 export class AppService {
   constructor(private readonly httpService: HttpService) {}
   
-  // findAll(query: string) {
-
-  async findAll(query: string): Promise<{people: object[], planets: object[], ships: object[]}> {
+  async findAll(query: string): Promise<{people: IPeople[], planets: IPlanet[], ships: IShip[]}> {
     const [people, planets, ships] = await Promise.all([
       this.searchEntities('people', query),
       this.searchEntities('planets', query),
@@ -15,8 +14,8 @@ export class AppService {
     ]);
 
     return {
-      people: people.map(el => ({name: el.name, gender: el.gender, weight: el.mass})),
-      planets: planets.map(el => ({name: el.name, population: el.population, d: el.diameter})),
+      people: people.map(el => ({name: el.name, gender: el.gender, mass: el.mass})),
+      planets: planets.map(el => ({name: el.name, population: el.population, diameter: el.diameter})),
       ships: ships.map(el => ({name: el.name, length: el.length, crew: el.crew})),
     };
   }
@@ -24,18 +23,16 @@ export class AppService {
   private async searchEntities(
     entity: string,
     query: string,
-  ): Promise<{name: string, gender?: string, mass?, population?, diameter?, length?, crew?}[]> {
+  ): Promise<IUnnownEntity[]> {
     const url = `https://swapi.dev/api/${entity}/`;
 
-    let results: any[] = [];
+    let results: IUnnownEntity[] = [];
     let nextPageUrl = url;
 
     while (nextPageUrl) {
-      const response = await this.httpService
-        .get(nextPageUrl)
-        .toPromise();
+      const response = await this.httpService.get(nextPageUrl).toPromise();
 
-      const entities = response.data.results.filter((e: any) =>
+      const entities = response.data.results.filter((e: IUnnownEntity) =>
         e.name.toLowerCase().includes(query.toLowerCase()),
       );
 
