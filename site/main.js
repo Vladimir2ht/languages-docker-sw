@@ -1,0 +1,51 @@
+const url = "http://[::1]:3000/get?q=";
+
+// let r = {people: [{name: 'hhh', sex: 'man', weight: 'people'}], planet: [], ship: [] }
+
+function SendRequest() {
+  
+  let response = document.querySelector('input').value;
+	console.log(url + response);
+	if (!response) return
+	response = fetch(url + response);
+
+	// if (poust) {
+	// response = fetch(addres, {
+	//   method: method,
+	//   headers: {
+	// 	'Content-Type': 'application/json'
+	//   },
+	//   body: JSON.stringify(poust)
+	// })
+  // } else {
+	// response = fetch(addres, {
+	//   method: method,
+	// })
+  // };
+  response.then(response => response.json())
+		.then(response => InsertDataIntoTables(response))
+};
+
+const tables = document.querySelectorAll('tbody');
+
+function InsertDataIntoTables(data) {
+
+	// Проходимся по каждому элементу и создаем строку для таблицы
+	data.people.forEach((item, i) => {
+		data.people[i] = `<tr><td>${item.name}</td><td>${item.gender}</td><td>${item.weight}</td></tr>`;
+	});
+
+	tables[0].innerHTML = data.people.join('');
+
+	data.planets.forEach((item, i) => {
+		data.planets[i] = `<tr><td>${item.name}</td><td>${item.d}</td><td>${item.population}</td></tr>`;
+	});
+
+	tables[1].innerHTML = data.planets.join('');
+
+	data.ships.forEach((item, i) => {
+		data.ships[i] = `<tr><td>${item.name}</td><td>${item.length}</td><td>${item.crew}</td></tr>`;
+	});
+
+	tables[2].innerHTML = data.ships.join('');
+}
