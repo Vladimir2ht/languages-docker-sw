@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  main:
+    container_name: SW
+    build:
+      context: .
+      # dockerfile: Dockerfile
+    # volumes:
+    #   - .:/app
+    #   - /app/node_modules
+    ports:
+      - "3000:3000"
+      - "9229:9229"
+    command: npm run start
+    restart: always
