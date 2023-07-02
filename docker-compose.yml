@@ -3,10 +3,11 @@ version: '3.8'
 services:
   main:
     container_name: SW
-    build:
-      context: .
+    build: ./docker
+    volumes:
+      - ./site/:/app
+    working_dir: /app
+    user: '1000:1000'
     ports:
-      - "3000:3000"
-      - "9229:9229"
-    command: npm run start
-    restart: always
+      - 3000:3000
+    command: php -S 0.0.0.0:3000 -t /app
