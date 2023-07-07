@@ -1,7 +1,8 @@
 const url = 'http://[::1]:3000/get?q=';
+const input = document.querySelector('input');
 
 function SendRequest() {
-  let response = document.querySelector('input').value;
+  let response = input.value;
   console.log(url + response);
   if (!response) return;
   response = fetch(url + response);

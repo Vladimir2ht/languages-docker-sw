@@ -46,7 +46,6 @@ if (count($_GET) === 0) {
 
 	echo json_encode([
 		'people' => searchEntities('people', $query, 'gender', 'mass'),
-
 		'planets' => searchEntities('planets', $query, 'population', 'diameter'),
 		'ships' => searchEntities('starships', $query, 'length', 'crew') 
 	]);
