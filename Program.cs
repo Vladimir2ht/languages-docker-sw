@@ -13,6 +13,7 @@ builder.Services.AddCors(options =>
 		);
 });
 
+// builder.Services.AddMemoryCache();
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
