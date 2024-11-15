@@ -1,0 +1,60 @@
+﻿<!DOCTYPE HTML>
+<html lang="ru">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Star Search</title>
+	<link href="~/favicon.ico" rel="icon">
+	<link href="~/css/main.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div class="mainelement">
+		<div>
+			<input class="inpanel">
+			<button class="inpanel" onclick="SendRequest()">Искать</button>
+		</div>
+		<!-- Можно вместо таблицы использовать greed. -->
+		<table>
+			<caption>Персонажи</caption>
+			<thead>
+				<tr>
+					<th class="theader">Имя</th>
+					<th class="theader">Пол</th>
+					<th class="theader">Вес</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+		<table>
+			<caption>Планеты</caption>
+			<thead>
+				<tr>
+					<th class="theader">Название</th>
+					<th class="theader">Диаметр</th>
+					<th class="theader">Население</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+		<table>
+			<caption>Космические корабли</caption>
+			<thead>
+				<tr>
+					<th class="theader">Название</th>
+					<th class="theader">Длинна</th>
+					<th class="theader">Количество членов экипажа</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+	</div>
+
+	<script src="~/js/main.js"></script>
+	@* @await RenderSectionAsync("Scripts", required: false) *@
+</body>
+</html>
